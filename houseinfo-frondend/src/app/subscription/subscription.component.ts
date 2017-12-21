@@ -8,7 +8,7 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angul
 import { EmailValidator } from '@angular/forms/src/directives/validators';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-
+import {MatSnackBar} from '@angular/material';
 
 import { FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -26,7 +26,8 @@ export class SubscriptionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: Http,
-    private shareData: ShareDataService
+    private shareData: ShareDataService,
+    public snackBar: MatSnackBar
   ) { }
 
   searchRes: any
@@ -145,17 +146,21 @@ export class SubscriptionComponent implements OnInit {
     if (test == false) {
       this.emailData = ""
       console.log("Invaild email address, set to undefine, this.emailData: " + this.emailData)
+      return false
     }
     else {
       this.emailData = this.emailData.toLowerCase()
       console.log("pass email reg test. This email address is a vaild address: " + this.emailData)
+      return true
     }
+    
   }
 
 
   subscribe() {
+    
     //Input clean up and vaildation
-    this.emailVaildation()
+    
     for (var i = 0; i < this.locationData.length; i++) {
       this.locationData[i] = this.locationData[i].toLowerCase()
     }
@@ -168,15 +173,27 @@ export class SubscriptionComponent implements OnInit {
         "highPrice": this.someRange3[1],
         "city": this.locationData
       }
-    console.log(userInfo)
+   // console.log(userInfo)
 
-    if (userInfo.email == "undefined") {
+    if (this.emailVaildation() == false) {
       console.log("Post error, email address is Invaild.")
+      this.snackBar.open('Email address is Invaild', 'X', {
+        duration: 2000
+      });
     }
     else {
       var url = "http://localhost:9001/userinfo/post"
       this.http.post(url, userInfo).subscribe((data) => {
-        console.log("Post success:" + data);
+        console.log("Post success.");
+        console.log(userInfo);
+        this.snackBar.open('Subscribe success', 'X', {
+          duration: 2000
+        });
+      },
+      error => {
+        this.snackBar.open('Subscribe failed', 'X', {
+          duration: 2000
+        });
       });
     }
   }

@@ -14,7 +14,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { routes } from './app.router'; 
 import { MatChipsModule } from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -53,7 +53,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
     HttpModule,
     MatExpansionModule,
     routes,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
