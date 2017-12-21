@@ -1,0 +1,55 @@
+
+<mat-card id="search-input">
+<br>
+
+<div class="search-content">
+
+  <form [formGroup]="form">
+    <mat-form-field class="location">
+      <input type="text" placeholder="Location" aria-label="text" matInput [formControl]="locatioControl" [matAutocomplete]="auto"  [(ngModel)]="locationData"
+        id="location" type="text" required>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let location of locations" [value]="location.value">
+          {{ location.viewValue }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="days">
+      <input placeholder="Days on Market" type="number" step="5" min="0" max="90" aria-label="text1" matInput [formControl]="dayControl" [(ngModel)]="dayData"
+        [matAutocomplete]="auto1" id="day" required>
+      <mat-autocomplete #auto1="matAutocomplete">
+        <mat-option *ngFor="let day of days" [value]="day.value">
+          {{ day.viewValue }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <nouislider class="slide" [connect]="true" [min]="0" [max]="1500000" [(ngModel)]="someRange3" [step]="100000" [formControl]="form.controls.range" ></nouislider>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="minPrice">
+            <input matInput placeholder="Min Price" id="minPrice" type="number" step="100000" min="0"  [(ngModel)]="someRange3[0]" [formControl]="minPriceControl"  required>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="maxPrice">
+            <input matInput placeholder="Max Price" id="maxPrice" type="number" step="100000" min="0"  [(ngModel)]="someRange3[1]" [formControl]="maxPriceControl" required>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <br>
+    <button class ='submit' mat-raised-button color="primary" type="submit" (click)="search()">Search</button>
+    <p> </p>
+    <br>
+
+  </form>
+</div>
+
+
+
+   
+  </mat-card>

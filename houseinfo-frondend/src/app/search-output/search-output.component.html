@@ -1,0 +1,118 @@
+<div *ngIf="searchRes" #scrolling>
+    <mat-accordion>
+  <mat-expansion-panel *ngFor="let houseinfo of searchRes.content; let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>{{i+1}}. {{houseinfo.address}},{{houseinfo.city}},{{houseinfo.state}},{{houseinfo.zip}} --- ${{houseinfo.sellPrice}}</h4>
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <hr>
+      <h4>Basic Info</h4>
+          <table class="table borderless">
+              <thead>
+                <tr>
+                    <th>HouseType</th>
+                    <th>YearBuild</th> 
+                    <th>Days On Market</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>{{houseinfo.houseType}}</td>
+                    <td>{{houseinfo.yearBuild}}</td>
+                    <td>{{houseinfo.daysOnZillow}} Days</td>
+                </tr>
+              </tbody>
+            </table>
+         
+      <h4>Price</h4>
+        <table class="table borderless">
+            <thead>
+              <tr>
+                  <th>SellPrice</th>
+                  <th>Price/sqft</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>${{houseinfo.sellPrice}}</td>
+                  <td>${{houseinfo.pricePerSqft}}</td>
+              </tr>
+            </tbody>
+          </table>
+  
+      <h4>Location</h4>
+        <table class="table borderless">
+            <thead>
+              <tr>
+                  <th>Address</th>
+                  <th>City</th> 
+                  <th>State</th> 
+                  <th>Zip</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>{{houseinfo.address}}</td>
+                  <td>{{houseinfo.city}}</td>
+                  <td>{{houseinfo.state}}</td>
+                  <td>{{houseinfo.zip}}</td>
+              </tr>
+            </tbody>
+          </table>
+  
+      <h4>Features</h4>
+        <table class="table borderless">
+            <thead>
+              <tr>
+                <th>badrooms</th>
+                <th>bathrooms</th>
+                <th>Size</th>
+                <th>Lot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{houseinfo.badrooms}}</td>
+                <td>{{houseinfo.bathrooms}}</td>
+                <td>{{houseinfo.size}} sqft</td>
+                <td>{{houseinfo.lot}} sqft</td>
+              </tr>
+            </tbody>
+          </table>
+         <table class="table borderless">
+          <thead>
+            <tr>
+              <th>Heating</th>
+              <th>Cooling</th>
+              <th>Parking</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{houseinfo.heating}}</td>
+              <td>{{houseinfo.cooling}}</td>
+              <td>{{houseinfo.parking}}</td>
+            </tr>
+          </tbody>
+        </table>
+    
+      <h4>Description</h4>
+      <p>{{houseinfo.description}}</p>
+      
+      <h4>More Information</h4>
+      <p><a target="_blank" href="{{houseinfo.url}}">Link</a></p>
+     
+      <hr>
+
+      <!-- <p>json:</p> 
+    <pre>
+          {{  houseinfo | json  }}
+      </pre> -->
+  </mat-expansion-panel>
+
+</mat-accordion>
+
+</div>

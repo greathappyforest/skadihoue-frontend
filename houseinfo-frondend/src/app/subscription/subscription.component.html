@@ -1,0 +1,103 @@
+<div class="container" #scrollMe style="height: 50%;">
+
+  <app-header></app-header>
+
+  <mat-card id="subscribe-input">
+    <br>
+
+    <div class="subscribe-content">
+
+      <form [formGroup]="form">
+        <table>
+          <tr>
+            <td>
+              <mat-form-field class="firstName">
+                <input matInput placeholder="First Name" id="firstName" type="text" [(ngModel)]="firstName" [formControl]="firstNameControl"
+                  required>
+              </mat-form-field>
+              <mat-form-field class="lastName">
+                <input matInput placeholder="Last Name" id="lastName" type="text" [(ngModel)]="lastName" [formControl]="lastNameControl"
+                  required>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <mat-form-field class="location">
+          <input matInput placeholder="Email" [formControl]="emailControl" [errorStateMatcher]="matcher" [(ngModel)]="emailData" id="email"
+            required>
+          <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailControl.hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+  
+        <div *ngIf="locationData" class="location mat-input-container mat-form-field ng-tns-c5-1 mat-form-field-type-mat-input mat-form-field-can-float mat-form-field-hide-placeholder mat-primary">
+          <mat-chip-list #chipList class="chipList location">
+            <mat-chip *ngFor="let location of locationData" [selectable]="selectable" [removable]="removable" (remove)="remove(location)">
+              {{location}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+
+        <mat-form-field class="location">
+          <input matInput placeholder="Locations" type="text" [matAutocomplete]="auto" [formControl]="locationControl" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+            required>
+
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let location of locations" [value]="location.value">
+              {{ location.viewValue }}
+            </mat-option>
+          </mat-autocomplete>
+
+        </mat-form-field>
+
+
+
+        <!-- <mat-form-field class="days">
+          <input placeholder="Days on Market" type="number" step="5" min="0" max="90" aria-label="text1" matInput [formControl]="dayControl"
+            [(ngModel)]="dayData" [matAutocomplete]="auto1" id="day" required>
+          <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let day of days" [value]="day.value">
+              {{ day.viewValue }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+
+        <nouislider class="slide" [connect]="true" [min]="0" [max]="1500000" [(ngModel)]="someRange3" [step]="100000" [formControl]="form.controls.range"></nouislider>
+        <table>
+          <tr>
+            <td>
+              <mat-form-field class="minPrice">
+                <input matInput placeholder="Min Price" id="minPrice" type="number" step="100000" min="0" [(ngModel)]="someRange3[0]" [formControl]="minPriceControl"
+                  required>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="maxPrice">
+                <input matInput placeholder="Max Price" id="maxPrice" type="number" step="100000" min="0" [(ngModel)]="someRange3[1]" [formControl]="maxPriceControl"
+                  required>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <br>
+        <button class='submit' mat-raised-button color="primary" type="submit" (click)="subscribe()">Subscribe</button>
+        <p> </p>
+        <br>
+
+      </form>
+    </div>
+  </mat-card>
+
+
+
+  <app-footer></app-footer>
+
+</div>

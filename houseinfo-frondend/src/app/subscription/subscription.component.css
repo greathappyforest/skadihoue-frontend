@@ -1,0 +1,77 @@
+.subscribe-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subscribe-content .firstName {
+    width: 30%;
+    margin-bottom: 15px;
+  }
+  .subscribe-content .lastName {
+    margin-left: 40px;
+    width: 30%;
+  }
+  .subscribe-content .location {
+    width: 50%;
+    margin-left:20%
+  }
+  .subscribe-content .days {
+    width: 50%;
+    margin-left:20%
+  }
+  .subscribe-content table{
+    margin-left:20%;
+  }
+  .subscribe-content .minPrice {
+    width: 60%;
+    
+  }
+  .subscribe-content .maxPrice {
+    width: 60%;
+  
+  }
+
+
+  .subscribe-content .slide{
+    width: 60%;
+    margin-left:20%;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+
+
+  .mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+    /* background-color: rgb(0,132,203)!important; */
+    background-color: rgb(19,168,158)!important;
+}
+
+
+
+
+.subscribe-content .submit{
+margin-left:20%
+}
+
+
+
+#subscribe-input {
+    margin-top: 5%;
+    margin-left:15%;
+    margin-bottom: 5%;
+    width:70%;
+  }
+  
+  .mat-chip:not(.mat-basic-chip) {
+    background-color: rgb(19,168,158)!important;
+    color: white;
+   
+}
+
+
+.location{
+    width: 100%;
+}
+
+.mat-chip-list{
+    margin-left:20%;
+}
